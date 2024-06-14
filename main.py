@@ -29,7 +29,7 @@ class Maze_Game:
         }
 
         # Bg
-        img1 = Image.open(r".\\maze_game_raioniee\\images\\bg.jpeg")
+        img1 = Image.open(r".\\images\\bg.jpeg")
         img1 = img1.resize((600, 400))
         self.photoimg1 = ImageTk.PhotoImage(img1)
 
@@ -79,7 +79,7 @@ class Maze_Game:
         self.current_state = "GAME"  # Set the current state to GAME
         self.state_label.config(text=f"State: {self.current_state}")  # Update the state label
         self.root.withdraw()
-        subprocess.Popen(['python', './maze_game_raioniee/maze_game.py']).wait()
+        subprocess.Popen(['python', './maze_game.py']).wait()
         self.root.deiconify()
         self.transition("back_to_menu")
 
@@ -90,7 +90,7 @@ class Maze_Game:
         print("Current State:", self.current_state)
 
         # Display tentang 
-        img2 = Image.open(r".\\maze_game_raioniee\\images\\purple.jpeg")
+        img2 = Image.open(r".\\images\\purple.jpeg")
         img2 = img2.resize((600, 400))
         self.photoimg2 = ImageTk.PhotoImage(img2)
 

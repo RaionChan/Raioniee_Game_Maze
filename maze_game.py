@@ -106,7 +106,7 @@ class MazeGameFSA:
             pygame.display.flip()
             pygame.time.delay(2000) 
             pygame.quit()
-            os.system('python .\\maze_game_raioniee\\main.py')  
+            os.system('python .\\main.py')  
             sys.exit()
         elif self.current_state == GameState.WIN:
             screen.fill(WIN_COLOR)
@@ -115,7 +115,7 @@ class MazeGameFSA:
             pygame.display.flip()
             pygame.time.delay(2000)
             pygame.quit()
-            os.system('python .\\maze_game_raioniee\\main.py') 
+            os.system('python .\\main.py') 
             sys.exit()
         else:
             pygame.draw.rect(screen, PLAYER_COLOR, (self.player.pos.x * CELL_SIZE, self.player.pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
@@ -130,10 +130,104 @@ clock = pygame.time.Clock()
 
 # Tambahkan beberapa rintangan
 obstacles = [
-    pygame.Rect(3 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
-    pygame.Rect(4 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
-    pygame.Rect(5 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
-    pygame.Rect(6 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    pygame.Rect(3 * CELL_SIZE, 0 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(4 * CELL_SIZE, 0 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(5 * CELL_SIZE, 0 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(5 * CELL_SIZE, 1 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(7 * CELL_SIZE, 1 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(9 * CELL_SIZE, 1 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(10 * CELL_SIZE, 1 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(11 * CELL_SIZE, 1 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(12 * CELL_SIZE, 1 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(3 * CELL_SIZE, 2 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(7 * CELL_SIZE, 2 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(9 * CELL_SIZE, 2 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(12 * CELL_SIZE, 2 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 1* CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect(2 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 3* CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 4* CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 6* CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 7* CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 9* CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 4* CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 6* CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 9* CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 10* CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 11* CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 13* CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 2* CELL_SIZE, 5 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 6* CELL_SIZE, 5 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 8* CELL_SIZE, 5 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 9* CELL_SIZE, 5 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 11* CELL_SIZE, 5 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 0* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 1* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 2* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 3* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 4* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 5* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 6* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 11* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 12* CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 9* CELL_SIZE, 7 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 10* CELL_SIZE, 7 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 11 * CELL_SIZE, 7 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 1* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 2* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 3* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 4* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 5* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 6* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 7* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 8* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 9* CELL_SIZE, 8 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 11* CELL_SIZE, 9 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 12* CELL_SIZE, 9 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 13* CELL_SIZE, 9 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE, 9 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 3* CELL_SIZE, 9 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 0* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 1* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 3* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 4* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 5* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 6* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 7* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 9* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 10* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 11* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 12* CELL_SIZE, 10 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  1* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  2* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  3* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  6* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  7* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  8* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  10* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 14* CELL_SIZE,  11* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    pygame.Rect( 5* CELL_SIZE,  11* CELL_SIZE, CELL_SIZE, CELL_SIZE),
+
+
+
+
+
+
+    # pygame.Rect(0 * CELL_SIZE, 1 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(4 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(5 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(6 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(7 * CELL_SIZE, 3 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(3 * CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(3 * CELL_SIZE, 5 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(3 * CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(7 * CELL_SIZE, 4 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(7 * CELL_SIZE, 5 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(7 * CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(4 * CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(5 * CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
+    # pygame.Rect(0 * CELL_SIZE, 6 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
 ]
 
 # Main program
